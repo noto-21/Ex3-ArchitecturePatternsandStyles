@@ -10,7 +10,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-
         System.out.println("Test 1:");
         DBReader.query("345712368");
         DBReader.query("133874926");
