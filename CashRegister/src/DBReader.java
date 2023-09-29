@@ -1,34 +1,42 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 
 public class DBReader 
 {
-    public static double getDBPrice(String name)
+    public static void query(String query)
     {
-        double fruitPriceFromDB = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        String name = "Not Found";
+        double price = 0;
         
-        try (Scanner sc = new Scanner(new File("Design Patterns/src/DB.txt"));)
+        try (Scanner sc = new Scanner(new File("CashRegister/src/DB.txt"));)
         {
             while (sc.hasNext())
             {
-                String db_Name = sc.next();
+                String read = sc.nextLine();
+                String[] itemArr = read.split(",");
 
-                if (db_Name.equals(name) && sc.hasNextDouble())
+                if (itemArr.length == 3 && itemArr[0].equals(query))
                 {
-                    fruitPriceFromDB = sc.nextDouble();
+                    name = itemArr[1];
+                    price = Double.parseDouble(itemArr[2]);
                     break;
                 }
-                else 
-                    if (sc.hasNextDouble())
-                        sc.nextDouble();
             }
         }
         catch (FileNotFoundException err)
         {
-            System.out.println("Error reading the file");
+            System.out.println("Error: File not found!");
             err.printStackTrace();
         }
-        return fruitPriceFromDB;
+        catch (Exception err)
+        {
+            System.out.println("Error: Unknown Exception!");
+            err.printStackTrace();
+        }
+
+        System.out.println(name + ": $" + df.format(price));
     }
 }
