@@ -14,7 +14,7 @@ public class DBReader
     {
         DecimalFormat df = new DecimalFormat("0.00");
         String name = "Not Found";
-        int id = 0;
+        int id = 1;
         double price = 0;
         
         try (Scanner sc = new Scanner(new File(path));)
@@ -33,15 +33,15 @@ public class DBReader
                 }
             }
         }
-        catch (FileNotFoundException err)
+        catch (FileNotFoundException e)
         {
-            System.out.println("Error: File not found!");
-            err.printStackTrace();
+            System.out.println("Error: File not found! - " + e.getMessage());
+            e.printStackTrace();
         }
-        catch (Exception err)
+        catch (Exception e)
         {
-            System.out.println("Error: Unknown Exception!");
-            err.printStackTrace();
+            System.out.println("Error: Unknown Exception! - " + e.getMessage());
+            e.printStackTrace();
         }
 
         System.out.println(String.format("%s [%d]: $%s", name, id, df.format(price)));
@@ -53,9 +53,9 @@ public class DBReader
         {
             fw.write("\n" + String.format("%d,%s,%f", id, name, price));
         }
-        catch (IOException ioe) 
+        catch (IOException e) 
         {
-            System.err.println("IOException: " + ioe.getMessage());
+            System.err.println("IOException: " + e.getMessage());
         }
     }
 }
