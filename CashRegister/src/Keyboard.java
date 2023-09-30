@@ -6,8 +6,8 @@ public class Keyboard
     {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a query: ");
-        String input = sc.nextLine();
+        String query = sc.nextLine();
         sc.close();
-        return input;
+        return query;
     }
 }
