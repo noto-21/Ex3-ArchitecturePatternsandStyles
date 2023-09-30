@@ -7,15 +7,28 @@ import java.text.DecimalFormat;
 
 public class DBReader 
 {
-    public static final String path = "CashRegister/src/DB.txt";
-    public static final int attLength = 3;
+    private static final String path = "CashRegister/src/DB.txt";
+    private static final int attLength = 3;
+    private static String name = "Not Found";
+    private static int id = 1;
+    private static double price = 0;
+
+    public static int getId(int id)
+    {
+        return id;
+    }
+    public static String getName(String name)
+    {
+        return name;
+    }
+    public static double getPrice(double price)
+    {
+        return price;
+    }
 
     public static void query(String query)
     {
         DecimalFormat df = new DecimalFormat("0.00");
-        String name = "Not Found";
-        int id = 1;
-        double price = 0;
         
         try (Scanner sc = new Scanner(new File(path));)
         {
@@ -35,16 +48,16 @@ public class DBReader
         }
         catch (FileNotFoundException e)
         {
-            System.out.println("Error: File not found! - " + e.getMessage());
-            e.printStackTrace();
+            CashRegister.outputLn("Error: File not found! - " + e.getMessage());
+            CashRegister.trace(e);
         }
         catch (Exception e)
         {
-            System.out.println("Error: Unknown Exception! - " + e.getMessage());
-            e.printStackTrace();
+            CashRegister.outputLn("Error: Unknown Exception! - " + e.getMessage());
+            CashRegister.trace(e);
         }
 
-        System.out.println(String.format("%s [%d]: $%s", name, id, df.format(price)));
+        CashRegister.outputLn(String.format("%s [%d]: $%s", name, id, df.format(price)));
     }
 
     public static void addItem(int id, String name, double price) 
@@ -55,7 +68,7 @@ public class DBReader
         }
         catch (IOException e) 
         {
-            System.err.println("IOException: " + e.getMessage());
+            CashRegister.outputLn("IOException: " + e.getMessage());
         }
     }
 }
