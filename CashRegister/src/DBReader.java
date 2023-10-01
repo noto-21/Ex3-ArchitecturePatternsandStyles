@@ -1,34 +1,33 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.DecimalFormat;
 
 public class DBReader 
 {
     private static final String path = "CashRegister/src/DB.txt";
     private static final int attLength = 3;
-    private static String name = "Not Found";
-    private static int id = 1;
-    private static double price = 0;
+    private static String id;
+    private static String name;
+    private static double price;
 
-    public static int getId(int id)
+    public static String getId()
     {
         return id;
     }
-    public static String getName(String name)
+    public static String getName()
     {
         return name;
     }
-    public static double getPrice(double price)
+    public static double getPrice()
     {
         return price;
     }
 
-    public static void query(String query)
+    public static boolean query(String query)
     {
-        DecimalFormat df = new DecimalFormat("0.00");
+        boolean success = false;
+
+        id = query;
         
         try (Scanner sc = new Scanner(new File(path));)
         {
@@ -39,10 +38,15 @@ public class DBReader
 
                 if (itemArr.length == attLength && itemArr[0].equals(query))
                 {
-                    id = Integer.parseInt(itemArr[0]);
                     name = itemArr[1];
                     price = Double.parseDouble(itemArr[2]);
+                    success = true;
                     break;
+                }
+                else
+                {
+                    name = "Not Found";
+                    price = 0.00;
                 }
             }
         }
@@ -57,18 +61,6 @@ public class DBReader
             CashRegister.trace(e);
         }
 
-        CashRegister.outputLn(String.format("%s [%d]: $%s", name, id, df.format(price)));
-    }
-
-    public static void addItem(int id, String name, double price) 
-    {
-        try (FileWriter fw = new FileWriter(path, true))
-        {
-            fw.write("\n" + String.format("%d,%s,%f", id, name, price));
-        }
-        catch (IOException e) 
-        {
-            CashRegister.outputLn("IOException: " + e.getMessage());
-        }
+        return success;
     }
 }
