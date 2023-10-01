@@ -1,10 +1,12 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class DBReader 
 {
-    private static final String path = "./CashRegister/src/DB.txt";
+    private static final String path = "src/DB.txt";
     private static final int attLength = 3;
     private static String id;
     private static String name;
@@ -28,7 +30,14 @@ public class DBReader
         boolean success = false;
 
         id = query;
-        
+        Path newPath = Paths.get(path);
+
+        if (newPath.toFile().exists()) {
+            System.out.println("File exists at newPath: " + newPath.toAbsolutePath());
+        } else {
+            System.out.println("File does not exist at newPath: " + newPath.toAbsolutePath());
+        }
+
         try (Scanner sc = new Scanner(new File(path));)
         {
             while (sc.hasNext())
