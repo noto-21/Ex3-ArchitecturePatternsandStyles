@@ -1,12 +1,11 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 
 public class DBReader 
 {
-    private static URL path = DBReader.class.getResource("DB.txt");
-    private static File db = new File(path.getFile());
+    private static String path = "src/DB.txt";
+    private static File db = new File(path);
     private static final int attLength = 3;
     private static String id;
     private static String name;
