@@ -1,10 +1,12 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URL;
 
 public class DBReader 
 {
-    private static final String path = "./CashRegister/src/DB.txt";
+    private static URL path = DBReader.class.getResource("DB.txt");
+    private static File db = new File(path.getFile());
     private static final int attLength = 3;
     private static String id;
     private static String name;
@@ -29,7 +31,7 @@ public class DBReader
 
         id = query;
         
-        try (Scanner sc = new Scanner(new File(path));)
+        try (Scanner sc = new Scanner(db))
         {
             while (sc.hasNext())
             {
