@@ -60,7 +60,8 @@ public class CashRegister
      --------------------------*/
     public static String inputQuery()
     {
-        return Keyboard.inputQuery();
+        Keyboard.inputQuery();
+        return Keyboard.getQuery();
     }
 
     public static void closeKeyboard()

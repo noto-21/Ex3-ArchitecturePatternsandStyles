@@ -1,5 +1,5 @@
 /*
- * ~DB Contents~
+ * ~DB Base Contents~
  * [247473641]: Banana, 0.47
  * [345712368]: Apple, 1.12
  * [248736911]: Mango, 1.20
