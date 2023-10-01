@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class DBReader 
 {
-    private static String path = "src/DB.txt";
+    private static String path = "CashRegister/src/DB.txt";
     private static File db = new File(path);
     private static final int attLength = 3;
     private static String id;
