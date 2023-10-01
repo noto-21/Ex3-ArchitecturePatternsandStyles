@@ -4,6 +4,7 @@
  * [345712368]: Apple, 1.12
  * [248736911]: Mango, 1.20
  * [133874926]: HD Television, 499.99
+ * [180026721]: Ramen, 0.94
  */
 
 public class Main
@@ -27,5 +28,4 @@ public class Main
 
         CashRegister.outputLn("\nThank you for using the Cash Register!\n");
     }
-
 }
