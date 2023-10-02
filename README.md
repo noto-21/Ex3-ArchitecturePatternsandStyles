@@ -1,2 +1,2 @@
-# Ex3-ArchitecturePatternsandStyles
+# MVC-CashRegister
 MVC implemented within a cash register system.
